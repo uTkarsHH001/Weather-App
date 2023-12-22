@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hind:wght@300&family=Josefin+Sans:wght@200;300;400;500&family=Poppins&family=Ubuntu:wght@300;700&display=swap" rel="stylesheet">
+<script src="https://kit.fontawesome.com/2b6d5768d5.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+  
+
+  <div class="wrapper">
+    
+    <div class="content">
+      <h1>Weather App</h1>
+
+      <!-- Button Tab -->
+      <div class="tabs">
+        <button id="btn1">Your Weather</button>
+        <button id="btn2">Search Weather</button>
+      </div>
+
+      <!-- Your Weather Content -->
+      <div class="yourWeather">
+        <div class="grantPermission">
+          <img
+            src="images/location.png"
+            width="80"
+            height="80"
+            loading="lazy"
+          />
+          <h2>Grant Location Access</h2>
+          <p>Allow access to get weather information</p>
+          <button id="grantAccess">Grant Access</button>
+        </div>
+      </div>
+
+      <!-- Search Weather Content -->
+      <div class="searchWeather dnone">
+        <input type="text" placeholder="Search For City" required>
+        <button id="search" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+      </div>
+
+      <div class="weather dnone">
+        <!-- Weather Success Info -->
+        <div class="weatherSuccess dnone">
+          <h2 class="city"></h2>
+          <h4 class="weatherInfo"></h4>
+          <img class="iconImg" src="" alt="">
+          <h1 class="temp"></h1>
+
+          <!-- Weather Cards -->
+          <div class="weatherCards">
+
+            <div id="info windspeed">
+              <img src="images/wind.png" width="70px" alt="">
+              <p>WINDSPEED</p>
+              <p class="wind"></p>
+            </div>
+
+            <div id="info humidity">
+              <img src="images/humidity.png" width="70px alt="">
+              <p>HUMIDITY</p>
+              <p class="humidity"></p>
+            </div>
+
+            <div id="info clouds">
+              <img src="images/cloud.png" width="70px alt="">
+              <p>CLOUDS</p>
+              <p class="clouds"></p>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- Weather Fail Info -->
+        <div class="weatherFail dnone">
+          <img src="images/not-found.png" alt="">
+        </div>
+      </div>
+
+
+      <!-- Javacript File -->
+      <script src="js.js"></script>
+    </div>
+  </div>
+</body>
+</html>
