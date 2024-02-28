@@ -9,7 +9,7 @@
 }
 
 body{
-    height : 100vh;
+    min-height : 100vh;
     background-image: linear-gradient(to bottom, rgba(27, 79, 114, 0.4) , rgba(27, 79, 114, 1) );
     background-repeat: no-repeat;
     background-size: cover;
@@ -118,7 +118,6 @@ i{
     .weatherCards{
         flex-direction: column;
     }
-<<<<<<< HEAD
 }
 
 
@@ -147,6 +146,4 @@ dialog li{
 }
 dialog img{ 
     max-width: 260px;
-=======
->>>>>>> parent of ae48e91 (Update style)
 }
