@@ -9,6 +9,7 @@
 }
 
 body{
+    height : 100vh;
     background-image: linear-gradient(to bottom, rgba(27, 79, 114, 0.4) , rgba(27, 79, 114, 1) );
     background-repeat: no-repeat;
     background-size: cover;
@@ -20,7 +21,7 @@ body{
 } 
 
 .wrapper{
-    min-height: 100vh;
+    height: auto;
     max-width: 700px;
     margin: 0 auto;
 }
@@ -79,6 +80,7 @@ p{
 }
 
 i{
+    /* padding:10px; */
     border-radius: 50%;
     font-size: 20px;
     background-color: rgba(255, 255, 255, 0.3);
@@ -90,6 +92,10 @@ i{
     display: none;
 }
 
+.weather{
+    padding: 10px;
+}
+
 .weather h1, .weather h2, .weather, h3{
     padding:10px;
 }
@@ -98,10 +104,6 @@ i{
     display: flex;
     justify-content: space-evenly;
     margin: 20px;
-    }
-
-.cardImg{
-    width: 80px;
 }
 
 .weatherFail img{
@@ -111,11 +113,12 @@ i{
 }
 
 
- @media (max-width:500px) {
-     
+@media (max-width:500px) {
+
     .weatherCards{
         flex-direction: column;
     }
+<<<<<<< HEAD
 }
 
 
@@ -144,4 +147,6 @@ dialog li{
 }
 dialog img{ 
     max-width: 260px;
+=======
+>>>>>>> parent of ae48e91 (Update style)
 }
