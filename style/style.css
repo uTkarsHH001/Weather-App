@@ -5,14 +5,19 @@
     font-family: 'Hind', sans-serif;
     font-weight: 800;
     letter-spacing: 3px;
-    color: whitesmoke;
+    
 }
 
 body{
     background-image: linear-gradient(to bottom, rgba(27, 79, 114, 0.4) , rgba(27, 79, 114, 1) );
     background-repeat: no-repeat;
     background-size: cover;
+    color: whitesmoke;
 }
+
+::-webkit-scrollbar{
+    display: none;
+} 
 
 .wrapper{
     min-height: 100vh;
@@ -21,6 +26,8 @@ body{
 }
 .content{
     padding-top:10px;
+    /* position: relative;
+    top:80px; */
     text-align: center;
 }
 .title{
@@ -40,6 +47,8 @@ button{
     padding:10px 20px;
     border-radius: 5px;
     cursor: pointer;
+    color: white;
+
 }
 
 .tabs button:hover{
@@ -110,3 +119,29 @@ i{
 }
 
 
+#suggestFoods:hover{
+    opacity: 0.8;
+    border: 1px solid white;
+    /* position: absolute;
+    right: 12rem; */
+}
+
+dialog{
+    position: fixed;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);    
+    max-width: 500px;
+    border: none;
+    border-radius: 20px;
+}
+dialog li{
+    padding: 30px;
+    margin:20px;
+    border: 1px solid black;
+    box-shadow: 0 0  0 1px black;
+    list-style-type: none;
+}
+dialog img{ 
+    max-width: 260px;
+}

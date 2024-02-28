@@ -10,8 +10,67 @@ let inp = select(".searchWeather input");
 let btn = select("button#search");
 let weather = select("div.weather");
 let weatherSuccess = select("div.weatherSuccess");
+let suggestFood = select('button.suggestFoods');
 let weatherFail = select("div.weatherFail");
+
+const foodModal = select("#foodModal");
+const closeFoodModalBtn = select("#closeFoodModalBtn");
+const foodList = select("#foodList");
+// const foods = select('.foods')
 let city;
+let temp;
+
+// Function to show the modal and populate the suggested foods
+const showFoodModal = (foods) => {
+    foods.forEach((food) => {
+        let listItem = document.createElement("li");
+        const Imgg = document.createElement('img');
+        let Heading = document.createElement('h1');
+        const desc = document.createElement('h5');
+        
+        Imgg.src = food.image;
+        Heading.innerHTML = food.name;
+        desc.innerHTML = food.description;
+        
+        listItem.append(Imgg);
+        listItem.append(Heading);
+        listItem.append(desc);
+
+        foodList.appendChild(listItem);
+    });
+
+
+    foodModal.showModal();
+  };
+
+  // Event listener to close the food modal
+  closeFoodModalBtn.addEventListener("click", () => {
+    foodModal.close();
+  });
+
+suggestFood.addEventListener('click', () => {
+    let val = parseInt(temp.innerHTML);
+    // console.log(val);
+    getFoodByTemperature(val);  
+})
+
+
+const getFoodByTemperature = async (temperature) => {
+    const foodConainter = select('div.foodConainter');
+    try {
+        const response = await fetch(`http://localhost:3000/foodsByTemperature/${temperature}`);
+        const data = await response.json();
+        const suggestedFoods = data.foods;
+
+      // Clear the previous food list
+        foodList.innerHTML = '';
+      // Show the modal with suggested foods
+        showFoodModal(suggestedFoods);
+
+    } catch (error) {
+        console.error('Error fetching food data:', error);
+    }
+};
 
 
 
@@ -44,7 +103,6 @@ function getLocation(){
             console.log(err);
         }
     }
-
 }
 
 
@@ -107,7 +165,7 @@ function fetchWeatherInfo(data){
     let wind = select("p.wind");
     let humidity = select("p.humidity");
     let cloud = select("p.clouds");
-    
+    temp = h1;
 
     h2.innerHTML = data.name;
     h4.innerHTML = data.weather[0].description;

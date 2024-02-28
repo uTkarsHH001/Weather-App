@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="style/style.css">
 </head>
 <body>
-  
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>  
 
   <div class="wrapper">
     
@@ -50,6 +50,16 @@
       <div class="weather">
         <!-- Weather Success Info -->
         <div class="weatherSuccess dnone">
+          <button id="openModalBtn" class="suggestFoods">Suggest Foods</button>
+          
+            <dialog id="foodModal">
+            
+              <button id="closeFoodModalBtn"><p style="color:black">Close</p></button>
+              <!-- <div class="foods"></div> -->
+              <ul class="ab" id="foodList"></ul>
+            
+            </dialog>
+
           <h2 class="city"></h2>
           <h4 class="weatherInfo"></h4>
           <img class="iconImg" src="" alt="">
@@ -88,7 +98,7 @@
 
 
       <!-- Javacript File -->
-      <script src="js.js"></script>
+      <script type="module" src="js.js"></script>
     </div>
   </div>
 </body>
