@@ -58,7 +58,7 @@ suggestFood.addEventListener('click', () => {
 const getFoodByTemperature = async (temperature) => {
     const foodConainter = select('div.foodConainter');
     try {
-        const response = await fetch(`http://localhost:3000/foodsByTemperature/${temperature}`);
+        const response = await fetch(`https://weatherforecastt001.netlify.app/.netlify/functions/foodSuggestions`);
         const data = await response.json();
         const suggestedFoods = data.foods;
 

@@ -527,7 +527,7 @@ const foodsByTemperature = {
 };
 
 
-app.get('/foodsByTemperature/:temperature', async (req, res) => {
+app.get('/.netlify/functions/foodsByTemperature', async (req, res) => {
     const requestedTemperature = parseInt(req.params.temperature);
 
     const temperatureRange = Object.keys(foodsByTemperature)
