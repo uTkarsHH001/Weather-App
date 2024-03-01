@@ -112,21 +112,9 @@ i{
     width: 280px;
 }
 
-
-@media (max-width:500px) {
-
-    .weatherCards{
-        flex-direction: column;
-    }
-}
-
-
 .suggestFoods:hover{
     opacity: 0.8;
     border: 1px solid white;
-    /* background-color: white; */
-    /* position: absolute;
-    right: 12rem; */
 }
 
 dialog{
@@ -146,9 +134,22 @@ dialog li{
     list-style-type: none;
 }
 dialog img{ 
-    max-width: 260px;
+    position: relative;
+    width: 70%;
 }
 
 #closeFoodModalBtn:hover{
     border: 1px solid black;
 }
+
+@media (max-width:500px) {
+
+    .weatherCards{
+        flex-direction: column;
+    }
+    dialog{
+        max-width: 1000px;
+    }
+}
+
+
