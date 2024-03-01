@@ -1,13 +1,3 @@
-const express = require('express');
-const axios = require('axios')
-const cors = require('cors');
-const app = express();
-const port = 3000;
-
-app.use(cors());
-
-
-
 const foodsByTemperature = {
     0: [
         {
@@ -526,46 +516,4 @@ const foodsByTemperature = {
     ]
 };
 
-
-app.get('/.netlify/functions/foodsByTemperature', async (req, res) => {
-    const requestedTemperature = parseInt(req.params.temperature);
-
-    const temperatureRange = Object.keys(foodsByTemperature)
-        .sort((a, b) => parseInt(a) - parseInt(b))
-        .find(temp => requestedTemperature <= parseInt(temp));
-
-    const selectedTemperature = temperatureRange || Object.keys(foodsByTemperature).pop();
-
-    const filteredFoods = foodsByTemperature[selectedTemperature] || [];
-
-    // Fetch image URLs for each food item
-    const imageUrlPromises = filteredFoods.map(food => getImageUrlByName(food.name));
-    const imageUrls = await Promise.all(imageUrlPromises);
-
-    // Assign image URLs to each food item
-    filteredFoods.forEach((food, index) => {
-        food.image = imageUrls[index];
-    });
-
-    res.json({ temperature: requestedTemperature, foods: filteredFoods });
-});
-
-const key = '42598473-a3ce5fc16bf8d4b9f85be409f';
-
-async function getImageUrlByName(name) {
-    try {
-        const response = await axios.get(
-            `https://pixabay.com/api/?key=${key}&q=${name}&image_type=photo`
-        );
-        const data = response.data;
-
-        return data.hits[0]?.previewURL || 'https://cdn.pixabay.com/photo/2014/04/22/02/56/pizza-329523_1280.jpg';
-    } catch (error) {
-        console.error('Error fetching image:', error.message);
-        return 'Image not found';
-    }
-}
-
-app.listen(port, () => {
-    console.log(`Server is running at http://localhost:${port}`);
-});
+export default foodsByTemperature;

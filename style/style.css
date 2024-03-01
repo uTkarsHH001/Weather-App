@@ -121,9 +121,10 @@ i{
 }
 
 
-#suggestFoods:hover{
+.suggestFoods:hover{
     opacity: 0.8;
     border: 1px solid white;
+    /* background-color: white; */
     /* position: absolute;
     right: 12rem; */
 }
@@ -146,4 +147,8 @@ dialog li{
 }
 dialog img{ 
     max-width: 260px;
+}
+
+#closeFoodModalBtn:hover{
+    border: 1px solid black;
 }

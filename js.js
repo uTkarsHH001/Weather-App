@@ -1,3 +1,5 @@
+import foodsByTemperature from './foodSuggestion.js';
+
 const API_KEY = "56292fdafc6c3976964d9158000678ec";
 let select = (el) => document.querySelector(`${el}`);
 
@@ -38,12 +40,9 @@ const showFoodModal = (foods) => {
 
         foodList.appendChild(listItem);
     });
-
-
     foodModal.showModal();
   };
 
-  // Event listener to close the food modal
   closeFoodModalBtn.addEventListener("click", () => {
     foodModal.close();
   });
@@ -57,20 +56,52 @@ suggestFood.addEventListener('click', () => {
 
 const getFoodByTemperature = async (temperature) => {
     const foodConainter = select('div.foodConainter');
-    try {
-        const response = await fetch(`https://weatherforecastt001.netlify.app/functions/foodSuggestions`);
-        const data = await response.json();
-        const suggestedFoods = data.foods;
 
-      // Clear the previous food list
-        foodList.innerHTML = '';
-      // Show the modal with suggested foods
-        showFoodModal(suggestedFoods);
+    try {
+
+        const requestedTemperature = foodsByTemperature;
+        
+        const temperatureRange = Object.keys(foodsByTemperature)
+        .sort((a, b) => parseInt(a) - parseInt(b))
+        .find(temp => requestedTemperature <= parseInt(temp));
+
+        const selectedTemperature = temperatureRange || Object.keys(foodsByTemperature).pop();
+        const filteredFoods = foodsByTemperature[selectedTemperature] || [];
+
+        const imageUrlPromises = filteredFoods.map(food => getImageUrlByName(food.name));
+        const imageUrls = await Promise.all(imageUrlPromises);
+
+        filteredFoods.forEach((food, index) => {
+            food.image = imageUrls[index];
+        });
+
+        // res.json({ temperature: requestedTemperature, foods: filteredFoods });
+
+        showFoodModal(filteredFoods);
+        console.log(filteredFoods)
+        console.log('Jugnu')
 
     } catch (error) {
         console.error('Error fetching food data:', error);
     }
 };
+
+
+const key = '42598473-a3ce5fc16bf8d4b9f85be409f';
+
+async function getImageUrlByName(name) {
+    try {
+        const response = await axios.get(
+            `https://pixabay.com/api/?key=${key}&q=${name}&image_type=photo`
+        );
+        const data = response.data;
+
+        return data.hits[0]?.previewURL || 'https://cdn.pixabay.com/photo/2014/04/22/02/56/pizza-329523_1280.jpg';
+    } catch (error) {
+        console.error('Error fetching image:', error.message);
+        return 'Image not found';
+    }
+}
 
 
 
